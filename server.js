@@ -25,7 +25,7 @@ app.get("/api/:geo", (req, res) => {
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const geoloc = geoip.pretty(ip);
   console.log("Request IP address is ", ip);
-  console.log("geo location is", geoip.lookup(ip));
+  console.log("geo location is", geoip.pretty(ip), "\n", geoip.lookup(ip));
   client.query(
     "INSERT INTO location (ipaddr, reqloc, geoloc) VALUES ($1, $2, $3) ON CONFLICT (ipaddr) DO UPDATE SET reqloc = EXCLUDED.reqloc, geoloc = EXCLUDED.geoloc",
     [ip, req.params.geo, geoloc],
