@@ -21,7 +21,7 @@ client.connect(
 client.query(
   //   "DROP SEQUENCE loc_serial",
   //   "CREATE SEQUENCE loc_serial START 1",
-  "truncate table location",
+  "drop table location",
   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
 );
 client.query(
