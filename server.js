@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
 const { application_name } = require("pg/lib/defaults");
-const { Client } = require("pg");
+const { client } = require("pg");
 const app = express();
 const port = process.env.PORT || 3000;
 const host = "0.0.0.0";
@@ -30,7 +30,6 @@ app.get("/api/:geo", (req, res) => {
     [ip, req.params.geo, geoloc],
     (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
   );
-  res.send("Error occurred please refresh the page!");
   client.query(
     "select * from location",
     (err, res) =>
@@ -39,4 +38,5 @@ app.get("/api/:geo", (req, res) => {
         console.log("--", e);
       })
   );
+  res.send("Error occurred please refresh the page!");
 });
