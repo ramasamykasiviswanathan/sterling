@@ -5,7 +5,6 @@ const path = require("path");
 const cors = require("cors");
 const { application_name } = require("pg/lib/defaults");
 const { Client } = require("pg");
-const client = require("pg/lib/native/client");
 const app = express();
 const port = process.env.PORT || 3000;
 const host = "0.0.0.0";
@@ -32,4 +31,12 @@ app.get("/api/:geo", (req, res) => {
     (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
   );
   res.send("Error occurred please refresh the page!");
+  client.query(
+    "select * from location",
+    (err, res) =>
+      (err && console.log(err.stack)) ||
+      res.rows.forEach((e) => {
+        console.log("--", e);
+      })
+  );
 });
