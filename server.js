@@ -4,10 +4,22 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const cors = require("cors");
 const { application_name } = require("pg/lib/defaults");
-const { client } = require("pg");
+const { Client } = require("pg");
 const app = express();
 const port = process.env.PORT || 3000;
 const host = "0.0.0.0";
+
+const client = new Client({
+  host: "ec2-107-20-173-227.compute-1.amazonaws.com",
+  port: 5432,
+  user: "eifqdajlsekyln",
+  password: "4f9f35a7231046f48755fce2857e6a5c722737fbe9ab56ca25b4fd781ba95611",
+  database: "dmp09og0pfinv",
+  ssl: { rejectUnauthorized: false },
+});
+client.connect(
+  (err) => (err && console.log(err.stack)) || console.log("connected")
+);
 
 app.listen(port, () => {
   console.log("Server started in the port ", port);
