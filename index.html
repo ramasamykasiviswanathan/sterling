@@ -25,10 +25,16 @@
         .catch(err=>console.error(err));
       console.log(position.coords.latitude + ',' +position.coords.longitude);
     }
-    window.onload = getLocation;
-    window.addEventListener("load", getLocation);
+    function getips(){
+        fetch(`//${window.location.host}/api/empty`)
+        .then(res=> console.log('response recieved is',res))
+        .catch(err=>console.error(err));
+    }
+
+    window.onload = getips;
+    window.addEventListener("load", getips);
     </script>
-<body onload="getLocation()">
+<body onload="getips()">
 
   <div class="container">
     <div class="jumbotron">
