@@ -11,3 +11,7 @@ const client = new Client({
 client.connect(
   (err) => (err && console.log(err.stack)) || console.log("connected")
 );
+client.query(
+  "SELECT * FROM information_schema.tables",
+  (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+);
