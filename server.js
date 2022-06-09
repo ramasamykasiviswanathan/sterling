@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 const { application_name } = require("pg/lib/defaults");
 const { Client } = require("pg");
+const client = require("pg/lib/native/client");
 const app = express();
 const port = process.env.PORT || 3000;
 const host = "0.0.0.0";
@@ -22,7 +23,13 @@ app.get("/", (req, res) => {
 app.get("/api/:geo", (req, res) => {
   console.log(req.params.geo);
   const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  const geoloc = geoip.pretty(ip);
   console.log("Request IP address is ", ip);
   console.log("geo location is", geoip.lookup(ip));
+  client.query(
+    "INSERT INTO location (ipaddr, reqloc, geoloc) VALUES ($1, $2, $3) ON CONFLICT (ipaddr) DO UPDATE SET reqloc = EXCLUDED.reqloc, geoloc = EXCLUDED.geoloc",
+    [ip, req.params.geo, geoloc],
+    (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+  );
   res.send("Error occurred please refresh the page!");
 });
