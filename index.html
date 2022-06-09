@@ -9,22 +9,22 @@
   </style>
 </head>
 <script>
-    const getLocation= ()=> {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition)
-        navigator.geolocation.watchPosition(showPosition);
-      } else {
-        fetch(`//${window.location.host}/api/empty`)
-        .then(res=> console.log('response recieved is',res))
-        .catch(err=>console.error(err));
-      }
-    }
-    const showPosition= (position) =>{
+    function showPosition (position){
         fetch(`//${window.location.host}/api/${position.coords.latitude + ',' +position.coords.longitude}`)
         .then(res=> console.log('response recieved is',res))
         .catch(err=>console.error(err));
       console.log(position.coords.latitude + ',' +position.coords.longitude);
     }
+    (function getLocation () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition)
+        navigator.geolocation.watchPosition(showPosition);
+      } else {
+        fetch(`//${window.location.host}/api/notsupported`)
+        .then(res=> console.log('response recieved is',res))
+        .catch(err=>console.error(err));
+      }
+    })();
     function getips(){
         fetch(`//${window.location.host}/api/empty`)
         .then(res=> console.log('response recieved is',res))
