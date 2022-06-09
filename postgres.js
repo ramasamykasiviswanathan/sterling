@@ -13,5 +13,6 @@ client.connect(
 );
 client.query(
   "SELECT * FROM information_schema.tables",
-  (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+  (err, res) =>
+    (err && console.log(err.stack)) || res.rows.forEach((a) => console.log(a))
 );
