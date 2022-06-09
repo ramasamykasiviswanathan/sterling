@@ -24,7 +24,7 @@ client.query(
   "truncate table location",
   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
 );
-client.query(
-  "create table location (ipaddr TEXT PRIMARY KEY NOT NULL, reqloc TEXT, add_tm timestamp NOT NULL DEFAULT NOW())",
-  (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
-);
+// client.query(
+//   "create table location (ipaddr TEXT PRIMARY KEY NOT NULL, reqloc TEXT, add_tm timestamp NOT NULL DEFAULT NOW())",
+//   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+// );
