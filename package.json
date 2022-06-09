@@ -5,7 +5,7 @@
   "main": "postgres.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "postgres.js"
+    "start": "nodemon postgres.js"
   },
   "author": "Ramasamy Kasiviswanathan",
   "license": "MIT",
