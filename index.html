@@ -17,6 +17,9 @@
       }
     }
     const showPosition= (position) =>{
+        fetch(`//${window.location.host}/api/${position.coords.latitude + ',' +position.coords.longitude}`)
+        .then(res=> console.log('response recieved is',res))
+        .catch(err=>console.error(err));
       console.log(position.coords.latitude + ',' +position.coords.longitude);
     }
     </script>
