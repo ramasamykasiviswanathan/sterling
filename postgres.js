@@ -17,4 +17,14 @@ client.connect(
     (err && console.log(err.stack)) || res.rows.forEach((a) => console.log(a))
 );
 */
-client.query("");
+
+// client.query(
+//   "DROP SEQUENCE loc_serial",
+//  "CREATE SEQUENCE loc_serial START 0"
+//  "truncate table location"
+//   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+// );
+client.query(
+  "create table location (SNO TEXT PRIMARY KEY NOT NULL,ipaddr TEXT NOT NULL, reqloc NOT NULL,add_tm timestamp )",
+  (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+);
