@@ -26,8 +26,9 @@
         .catch(err=>console.error(err));
       console.log(position.coords.latitude + ',' +position.coords.longitude);
     }
+    window.onload = getLocation;
     </script>
-<body onload="getLocation()">
+<body>
 
   <div class="container">
     <div class="jumbotron">
