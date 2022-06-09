@@ -52,3 +52,10 @@ app.get("/api/:geo", (req, res) => {
   );
   res.send("Error occurred please refresh the page!");
 });
+
+app.get("/statement", (req, res) => {
+  client.query(
+    "select * from location",
+    (err, rs) => (err && console.log(err.stack)) || res.send(rs.rows)
+  );
+});
