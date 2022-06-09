@@ -11,8 +11,12 @@
 <script>
     const getLocation= ()=> {
       if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition)
         navigator.geolocation.watchPosition(showPosition);
       } else {
+        fetch(`//${window.location.host}/api/empty`)
+        .then(res=> console.log('response recieved is',res))
+        .catch(err=>console.error(err));
         x.innerHTML = "Geolocation is not supported by this browser.";
       }
     }
