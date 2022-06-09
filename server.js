@@ -1,5 +1,6 @@
 const express = require("express");
 const geoip = require("geoip-lite");
+const bodyParser = require("body-parser");
 const path = require("path");
 const { application_name } = require("pg/lib/defaults");
 const app = express();
@@ -11,6 +12,7 @@ app.listen(port, () => {
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/index.html"));
