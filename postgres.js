@@ -18,13 +18,13 @@ client.connect(
 );
 */
 
+// client.query(
+//   "DROP SEQUENCE loc_serial",
+//   "CREATE SEQUENCE loc_serial START 1",
+//  "truncate table location",
+//   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
+// );
 client.query(
-  //   "DROP SEQUENCE loc_serial",
-  "CREATE SEQUENCE loc_serial START 1",
-  //  "truncate table location",
-  (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
-);
-client.query(
-  "create table location (SNO TEXT PRIMARY KEY NOT NULL,ipaddr TEXT NOT NULL, reqloc NOT NULL, add_tm timestamp )",
+  "create table location (SNO TEXT PRIMARY KEY NOT NULL,ipaddr TEXT NOT NULL, reqloc TEXT, add_tm timestamp NOT NULL DEFAULT NOW())",
   (err, res) => (err && console.log(err.stack)) || console.log(res.rows[0])
 );
