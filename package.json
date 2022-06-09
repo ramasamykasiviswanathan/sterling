@@ -2,10 +2,10 @@
   "name": "sterling",
   "version": "1.0.0",
   "description": "",
-  "main": "postgres.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon postgres.js"
+    "start": "nodemon server.js"
   },
   "author": "Ramasamy Kasiviswanathan",
   "license": "MIT",

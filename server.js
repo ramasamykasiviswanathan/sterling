@@ -8,5 +8,6 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
+  console.log(JSON.stringify(req));
   res.send("Error occurred please refresh the page!");
 });
